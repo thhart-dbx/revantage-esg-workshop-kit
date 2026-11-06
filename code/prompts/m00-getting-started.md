@@ -51,12 +51,14 @@ The notebook's last cell prints **11 PASS** lines (properties 10, tenants 45, su
 
 ## Stage 4: Deploy both apps from your Git folder (4 min)
 
+First open `code/app/app.yaml` and `code/app-invoice-qa/app.yaml` in your Git folder and look at the **Workshop settings** block. If `DATABRICKS_CATALOG` / `DATABRICKS_SCHEMA` still read `<catalog>` / `<schema>`, replace them with the workshop catalog and schema the facilitator gives you (the shared data, not yet your own copy) and save. Leave the other lines alone.
+
 Apps → `esg-survey-<your name>` (the app page now says **Running** / *app not deployed*) → **Deploy** → **Source code path**: `/Workspace/Users/<your email>/revantage-esg-workshop-kit/code/app` (type it, or use the folder button next to the field to browse to `code/app`) → **Deploy**.
 Then `invoice-qa-<your name>` → **Deploy** → `/Workspace/Users/<your email>/revantage-esg-workshop-kit/code/app-invoice-qa` → **Deploy**.
 The platform runs `npm install` and `npm run build` on your source, then starts the app: about **1.5 minutes** each (measured 84 s), and both can deploy at the same time. The settings come from `app.yaml` in each folder: for now both apps read the **shared** workshop data (read-only); you switch them to your own data in Modules 1b and 6.
 **Expected:** the deployment history shows **Active**; the app page shows **Running** and the app URL.
 **Checkpoint:** open the survey app URL + `/?campaign=2026-Q4` (approve the one-time **Authorize** screen) → **Q4 2026 survey · Open until 30 November 2026 · Tenant ESG & Satisfaction Survey · 8 statements · 3 open questions** and the work-email box. Open the QA app → **Invoice QA queue** with **6** invoices needing review (the reference queue).
-**If stuck:** **Deploy** greyed out → compute is still starting (Stage 2); wait. "Survey unavailable" / "Couldn't load invoices" → the facilitator's grant script hasn't covered your app yet: ask, then reload (no redeploy needed). Deployment **Failed** → the **Deployments** / **Logs** tab shows why; the usual cause is a wrong source path (it must end in `/code/app` or `/code/app-invoice-qa`).
+**If stuck:** "DATABRICKS_CATALOG must be a plain SQL identifier" → `app.yaml` still has `<catalog>`: fix it (step above) and **Deploy** again. **Deploy** greyed out → compute is still starting (Stage 2); wait. "Survey unavailable" / "Couldn't load invoices" → the facilitator's grant script hasn't covered your app yet: ask, then reload (no redeploy needed). Deployment **Failed** → the **Deployments** / **Logs** tab shows why; the usual cause is a wrong source path (it must end in `/code/app` or `/code/app-invoice-qa`).
 
 ## Stage 5 (if time): Check your copy (2 min)
 
