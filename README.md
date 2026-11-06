@@ -25,16 +25,16 @@ if you're stuck (every asset also exists as a finished reference: objects named 
 
 | Time | Min | Module | Guide |
 |---|---|---|---|
-| 9:00–9:25 | 25 | **M0** Welcome, Git folder, your own data copy, start deploying both apps | [m00-getting-started.md](code/prompts/m00-getting-started.md) |
+| 9:00–9:25 | 25 | **M0** Welcome, Git folder, your own data copy, start deploying both apps (Stage 5 optional) | [m00-getting-started.md](code/prompts/m00-getting-started.md) |
 | 9:25–9:45 | 20 | **M1a** Lakebase schema, Lakehouse Sync, survey tables | [m01a-lakebase-tables.md](code/prompts/m01a-lakebase-tables.md) |
-| 9:45–10:00 | 15 | **M1b** Connect your survey app to your Lakebase schema, add one feature with Genie Code | [m01b-survey-app.md](code/prompts/m01b-survey-app.md) |
-| 10:00–10:10 | 10 | **M2** Quarterly survey alert | [m02-survey-alert.md](code/prompts/m02-survey-alert.md) |
-| 10:10–10:30 | 20 | **M3** Survey dashboard | [m03-survey-dashboard.md](code/prompts/m03-survey-dashboard.md) |
-| 10:30–10:50 | 20 | **M4** Survey Genie space | [m04-survey-genie.md](code/prompts/m04-survey-genie.md) |
-| 10:50–11:00 | 10 | Break | |
-| 11:00–11:25 | 25 | **M5** `ai_extract` on arrival | [m05-ai-extract.md](code/prompts/m05-ai-extract.md) |
-| 11:25–11:40 | 15 | **M6** Point your QA app at your table, add one feature with Genie Code | [m06-qa-app.md](code/prompts/m06-qa-app.md) |
-| 11:40–11:55 | 15 | **M7** QA errors dashboard | [m07-qa-dashboard.md](code/prompts/m07-qa-dashboard.md) |
+| 9:45–10:00 | 15 | **M1b** Point your survey app at your data, add one feature with Genie Code | [m01b-survey-app.md](code/prompts/m01b-survey-app.md) |
+| 10:00–10:15 | 15 | **M2** Quarterly survey alert (query by prompt, alert as a checklist) | [m02-survey-alert.md](code/prompts/m02-survey-alert.md) |
+| 10:15–10:40 | 25 | **M3** Survey dashboard: Stages 1–3 (Stages 4–5 optional, take-home) | [m03-survey-dashboard.md](code/prompts/m03-survey-dashboard.md) |
+| 10:40–10:50 | 10 | Break | |
+| 10:50–11:10 | 20 | **M4** Survey Genie space: Stages 1–4 (Stage 5 optional) | [m04-survey-genie.md](code/prompts/m04-survey-genie.md) |
+| 11:10–11:35 | 25 | **M5** `ai_extract`: Stages 1–4 hands-on; Stages 5–6 (job + live drop) shown by the facilitator on the reference job | [m05-ai-extract.md](code/prompts/m05-ai-extract.md) |
+| 11:35–11:50 | 15 | **M6** Point your QA app at your table, add one feature with Genie Code | [m06-qa-app.md](code/prompts/m06-qa-app.md) |
+| 11:50–11:55 | 5 | **M7** QA errors dashboard: facilitator demo of "Revantage Invoice QA (Reference)" (build it yourself: take-home) | [m07-qa-dashboard.md](code/prompts/m07-qa-dashboard.md) |
 | 11:55–12:00 | 5 | Wrap-up | |
 
 All guides in one document: [`participant-handout.md`](participant-handout.md) (also as `.docx`).

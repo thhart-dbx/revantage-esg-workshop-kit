@@ -57,3 +57,4 @@ Then, a few seconds later, in the **SQL editor** (only if your Lakehouse Sync fr
 ## Wrap-up
 - **So what:** the same app runs on anyone's data by changing two settings, and a useful feature is one prompt away; the answers land in a transactional database and in the lakehouse seconds later, with no ETL.
 - **Snowflake equivalent:** Streamlit in Snowflake + Hybrid Tables. Here: any web framework (this one is Next.js), full Postgres, managed sync to Delta.
+- **Facilitator:** Stages 1–3 rehearsed on 2026-11-05 (timings above: redeploy 62 s, Genie Code edit ~2–3 min). Not tested with a non-admin participant.

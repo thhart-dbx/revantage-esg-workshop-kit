@@ -1,6 +1,6 @@
 # Module 6: QA/QC app — "Your invoice QA app, your queue, one new feature"
 
-**Session:** 11:25–11:40 (15 min) · **You build:** your copy of the invoice QA app (deployed in Module 0) pointed at a QA queue built from your Module 5 table, plus an **"Approve N clean"** bulk action added with Genie Code · **Reference:** app `revantage-invoice-qa` (Next.js + TypeScript, `code/app-invoice-qa/`) on `ref_invoices_extracted` + `ref_invoice_corrections`; the finished feature file `code/prompts/solutions/m06-queue-view.tsx`
+**Session:** 11:35–11:50 (15 min) · **You build:** your copy of the invoice QA app (deployed in Module 0) pointed at a QA queue built from your Module 5 table, plus an **"Approve N clean"** bulk action added with Genie Code · **Reference:** app `revantage-invoice-qa` (Next.js + TypeScript, `code/app-invoice-qa/`) on `ref_invoices_extracted` + `ref_invoice_corrections`; the finished feature file `code/prompts/solutions/m06-queue-view.tsx`
 **Starting state:** your app `invoice-qa-<your_name>` deployed from `<your Git folder>/code/app-invoice-qa` in Module 0 (resource `sql-warehouse`); your `<catalog>.<my_schema>.invoices_extracted` from Module 5 (34 rows, `qa_status = 'Pending'`, `file_path` in your volume `<my_schema>.utility_invoices`); `utility_meters`, `emission_factors`, `properties` in `<my_schema>` (Module 0); the facilitator has run `code/scripts/grant_participant_apps.py` (your app's service principal: `USE SCHEMA`, `SELECT`, `MODIFY`, `READ VOLUME` on `<my_schema>`)
 **Where:** Workspace (your Git folder `revantage-esg-workshop-kit`: `code/invoices/sql/m06_qa_queue.sql` in the SQL file editor, `code/app-invoice-qa/app.yaml`, `code/app-invoice-qa/src/components/queue-view.tsx`) with Genie Code; Apps (your app page → **Deploy**)
 
@@ -48,3 +48,4 @@ FROM <catalog>.<my_schema>.invoice_corrections c ORDER BY c.corrected_at DESC;
 ## Wrap-up
 - **So what:** ai_extract does the keying, the app approves the clean majority in one click, and people only look at the handful that need judgement; every correction is captured as data (field, error type, who, when).
 - **Why Delta here (not Lakebase):** the corrections are analytical data the dashboard and the extraction scoring read directly, and the write volume is small; the survey app (Module 1) writes to Lakebase because it takes many small concurrent transactional writes.
+- **Facilitator:** Stages 1–3 rehearsed on 2026-11-05 on a scratch copy (timings above: redeploy 63 s, Genie Code edit ~1.5 min, 26 approvals 127 s). Not tested with a non-admin participant.

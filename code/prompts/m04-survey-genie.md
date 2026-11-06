@@ -1,13 +1,15 @@
 # Module 4: Survey Genie space — "Ask the survey, read the comments, connect the two"
 
-**Session:** 10:20–10:40 (20 min) · **You build:** Genie space "ESG Survey Genie – <your_name>" · **Reference:** "Revantage ESG Survey Genie (Reference)" (folder `spaces`)
+**Session:** 10:50–11:10 (20 min: Stages 1–4; Stage 5 optional) · **You build:** Genie space "ESG Survey Genie – <your_name>" · **Reference:** "Revantage ESG Survey Genie (Reference)" (folder `spaces`)
 **Starting state:** in `<catalog>.<schema>`: `ref_survey_answer_facts` (2,127 answers: Likert 1–5 + free text, with theme, property, campaign), `ref_survey_comment_insights` (399 comments with AI `sentiment` from `ai_analyze_sentiment` and `topic` from `ai_classify`), `ref_survey_request_status` (300 requests), metric views `ref_mv_survey_scores`, `ref_mv_survey_completion`
 **Where:** Genie → **New** (Genie space); the space's **Instructions** and **SQL queries** tabs
 
 ## Stage 1: Create the space (3 min)
 
-Genie → **New** → add tables `ref_survey_answer_facts`, `ref_survey_comment_insights`, `ref_survey_request_status` from `<catalog>.<schema>` → title "ESG Survey Genie – <your_name>", warehouse = the workshop warehouse. Leave instructions empty for now.
-**Checkpoint:** the space opens with 3 tables in **Data**.
+Genie → **New** → **Select tables manually** → add `ref_survey_answer_facts`, `ref_survey_comment_insights`, `ref_survey_request_status` from `<catalog>.<schema>` → **Create**, warehouse = the workshop warehouse. Leave instructions empty for now.
+The space gets an auto-generated name: click the title and rename it to **"ESG Survey Genie – <your_name>"**. Save it in your `spaces` folder (if it was created in your home folder, move it there).
+**Checkpoint:** the space is called "ESG Survey Genie – <your_name>" and opens with 3 tables in **Data**.
+**Facilitator:** the rename and the move to `spaces` were not checked in the rehearsal (the space kept its generated name there).
 
 ## Stage 2: Analyse the scores (4 min)
 
@@ -17,9 +19,11 @@ Genie → **New** → add tables `ref_survey_answer_facts`, `ref_survey_comment_
 **Expected:** 8 themes, 31 responses each; highest **Communication 3.94**, lowest **Indoor comfort 3.35** (Energy & carbon 3.58).
 
 **Prompt:**
-> Which property has the lowest Energy & carbon score?
+> Which property has the lowest Energy & carbon score across all campaigns?
 
 **Expected:** **Castellana Tower, 1.85** (27 answers over 5 quarters; portfolio 3.45).
+**Watch for:** Genie keeps the context of the chat: without "across all campaigns" it answers for 2026-Q4 only (Castellana Tower 1.5 on 4 answers). If that happens, start a **New chat** and ask again.
+**Facilitator:** the "across all campaigns" wording was not re-run in the UI; 1.85 is from the Conversation API run and SQL.
 **Checkpoint:** click **Show code**: an `AVG(likert_value)` over `ref_survey_answer_facts` with `theme = 'Energy & carbon'` grouped by property.
 
 ## Stage 3: Summarise the free text (4 min)
@@ -37,15 +41,16 @@ Talk track: `sentiment` and `topic` were computed once with `ai_analyze_sentimen
 
 **Expected without instructions (seen in pre-build):** the score (1.85 vs portfolio 3.45) but **no comments**: Genie either ignores the comments table or filters it on `question_theme = 'Energy & carbon'`, which never matches (comments answer the free-text questions *Improvement / Recent changes / Collaboration*). That's the teaching moment.
 
-Open **Instructions** → add this text instruction:
+Open **Instructions** → **General Instructions** → click into the instruction editor (not the chat box) → add this text instruction → **Save**:
 > When asked WHY a score is low or high at a property, combine both sources: (1) the average likert_value by theme for that property vs the portfolio average from ref_survey_answer_facts (question_type = 'likert'), and (2) what tenants say at that property: ref_survey_comment_insights filtered on property_name only (comments are answers to the free-text questions, so their question_theme is never a Likert theme; use the topic column to spot the cause), count comments by topic and sentiment and summarise them with ai_summarize(array_join(collect_list(comment), '\n'), 60). Quote 2 representative comments.
 
 Ask the same question again in a **new chat**.
 **Expected:** score **1.85 vs 3.45** *and* the tenant voice: **31 negative HVAC & temperature comments** (plus ~5 mixed), an `ai_summarize` line like *"Staff complain about poor ventilation and temperature, with HVAC issues causing discomfort and increased energy bills, prompting reconsideration of the lease."* and two quotes.
 **Checkpoint:** **Show code** contains `ai_summarize(` and `ref_survey_comment_insights` with a `property_name` filter only.
-**If stuck:** ask the reference space the same question; it also has the two metric views, a combined example SQL and 8 sample questions.
+**Facilitator:** in the UI rehearsal the tenant-voice part (quotes, interpretation) appeared after the instruction; the score part (1.85 vs 3.45) and `ai_summarize(` in Show code were not checked there (they were through the Conversation API).
+**If stuck:** ask the reference space **"Revantage ESG Survey Genie (Reference)"** the same question; it also has the two metric views, a combined example SQL and 8 sample questions.
 
-## Stage 5: Try more (2 min, optional)
+## Stage 5: Optional (take-home): Try more (2 min)
 > How has the Energy & carbon score at Amstel Logistics Park changed since the solar project?
 
 **Expected:** 2.60 (2025-Q4) → 3.00 → 3.80 → 3.83 → **4.50** (2026-Q4); favourable share 0 % → 100 %.
@@ -59,3 +64,4 @@ Ask the same question again in a **new chat**.
 ## Wrap-up
 - **So what:** the ESG team asks in plain language and gets both the number and the reason, straight from what tenants wrote, without reading 400 comments.
 - **Snowflake equivalent:** Cortex Analyst for the SQL + Cortex functions (SENTIMENT, SUMMARIZE) in separate steps; here one Genie space combines governed tables, metric views and AI functions in a single answer.
+- **Facilitator:** through the Genie Conversation API the reference space answered 7/7 questions correctly, and a space with only the 3 tables reproduced Stages 2–3 and the Stage 4 failure, then answered Stage 4 after the instruction. In the UI rehearsal (2026-11-05) Stages 1–4 passed apart from the notes above; Stage 5 was not run in the UI.

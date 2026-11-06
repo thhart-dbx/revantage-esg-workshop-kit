@@ -1,12 +1,15 @@
 # Module 7: QA errors dashboard — "Where do the invoice errors come from?"
 
-**Session:** 11:35–11:50 (15 min) · **You build:** AI/BI dashboard "Invoice QA – <your_name>" · **Reference:** "Revantage Invoice QA (Reference)" (folder `dashboards`; pages Errors by received date, Where errors come from, Extraction accuracy, Backlog & log)
+**Session:** 11:50–11:55 (5 min: facilitator demo of the reference dashboard "Revantage Invoice QA (Reference)"; participants: take-home) · **You build:** AI/BI dashboard "Invoice QA – <your_name>" · **Reference:** "Revantage Invoice QA (Reference)" (folder `dashboards`; pages Errors by received date, Where errors come from, Extraction accuracy, Backlog & log)
 **Starting state:** in `<catalog>.<schema>` (shared, so everyone sees the same numbers): metric views `ref_mv_invoice_qa` (one row per invoice: QA status, error rate, backlog) and `ref_mv_invoice_corrections` (one row per corrected field), views `ref_invoice_correction_facts_v`, `ref_invoice_edge_case_results_v`, table `ref_invoice_extraction_scores`. History: 34 invoices received 2026-08-04 … 2026-11-04, QA reviewed everything received before 2026-11-02.
 **Where:** Dashboards → **Create dashboard**; Genie Code panel in the dashboard editor
 
+**Facilitator demo (participants: take-home).** In the session the facilitator walks through the reference dashboard **"Revantage Invoice QA (Reference)"** (folder `dashboards`). The stages below are for building your own copy after the workshop.
+**Facilitator:** this module was not run in the UI rehearsal (the dashboard was created and moved to `dashboards`, then the session stopped before the datasets were added). The expected numbers come from the checkpoint queries and the reference datasets, run by SQL; the Genie Code prompts and the widgets were not checked in the UI.
+
 ## Stage 1: Data + KPIs (4 min)
 
-**Create dashboard** → rename "Invoice QA – <your_name>". **Data** → **Add data source** → `<catalog>.<schema>.ref_mv_invoice_qa`, `ref_mv_invoice_corrections`, `ref_invoice_edge_case_results_v`.
+**Create dashboard** → rename "Invoice QA – <your_name>" → **More actions (⋮) → File actions → Move…** → your `dashboards` folder. **Data** → **Add data source** → `<catalog>.<schema>.ref_mv_invoice_qa`, `ref_mv_invoice_corrections`, `ref_invoice_edge_case_results_v`.
 
 **Prompt** (Genie Code, dashboard editor):
 > Using the metric view ref_mv_invoice_qa, add a page "Errors by received date" with six counters: Invoices received (invoices), Backlog (pending_invoices), Error rate (error_rate, percent with one decimal), Straight-through rate (straight_through_rate, percent), Fields corrected (corrections) and ai_extract field accuracy (field_accuracy, percent).
@@ -44,3 +47,4 @@
 ## Wrap-up
 - **So what:** the QA lead sees error volume by the day invoices arrived, which fields and suppliers cause them, and which documents should never have gone straight through, from the same metric definitions the app and Genie use.
 - **Snowflake equivalent:** Snowsight dashboards over views; here the KPIs are UC metric views shared by dashboard, Genie and app.
+- **Facilitator:** every checkpoint query and all 9 reference datasets ran by SQL; the reference dashboard is deployed from the bundle. Genie Code prompts and widgets: not run in the UI. Numbers change if someone approves/corrects invoices in the QA app (M6) on the shared reference tables; the history before 2026-11-02 is rebuilt by `bundle run invoices_reference_qa`.

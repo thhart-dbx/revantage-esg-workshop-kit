@@ -1,6 +1,6 @@
 # Module 5: ai_extract on arrival — "Drop an invoice, get a row"
 
-**Session:** 10:50–11:15 (25 min) · **You build:** `<my_schema>.invoices_extracted` + a job that extracts every new invoice when it lands · **Reference:** table `<catalog>.<schema>.ref_invoices_extracted`, job "[Revantage ESG] Extract utility invoices (Reference)" (file-arrival trigger) and its fallback "[Revantage ESG] Extract utility invoices (Reference, 1-min poll fallback)"
+**Session:** 11:10–11:35 (25 min: Stages 1–4 hands-on; Stages 5–6 facilitator demo on the reference job) · **You build:** `<my_schema>.invoices_extracted` + a job that extracts every new invoice when it lands · **Reference:** table `<catalog>.<schema>.ref_invoices_extracted`, job "[Revantage ESG] Extract utility invoices (Reference)" (file-arrival trigger) and its fallback "[Revantage ESG] Extract utility invoices (Reference, 1-min poll fallback)"
 **Starting state:** volume `<catalog>.<my_schema>.utility_invoices` with 34 invoices in 16 drop folders `incoming/2026-08-04/` … `incoming/2026-11-04/` (folder = received date), 5 more in `live_drop/`; tables `utility_meters` (28 meters), `emission_factors`, `properties` (10). Answer key: `<catalog>.<schema>.ref_invoice_ground_truth` (edge case + expected outcome per file).
 **Where:** Catalog Explorer (volume), SQL editor with the Genie Code panel, Jobs & Pipelines
 
@@ -51,7 +51,10 @@ Then the point of the module, from the answer key:
 **Watch for:** `enum` is not enforced: one reference run returned `document_type = 'district_heating'` for `de-heat-2026-10-fernwaerme`; the Stage 3 test run returned `'water'` for `lu-water-2026-q3-vdleau`. Results differ slightly between runs (4 of 612 values changed on a re-run).
 **Checkpoint:** `SELECT edge_case, expected_outcome, actual_outcome FROM <catalog>.<schema>.ref_invoice_edge_case_results_v` → 23 handled / 10 needs_qa / 1 not_handled.
 
-## Stage 5: Run it when a file arrives (4 min)
+## Stage 5: Facilitator demo (participants: take-home): Run it when a file arrives (4 min)
+
+In the session the facilitator shows Stages 5–6 on the reference job **"[Revantage ESG] Extract utility invoices (Reference, 1-min poll fallback)"** (and its file-arrival twin "[Revantage ESG] Extract utility invoices (Reference)"). Build your own job after the workshop.
+**Facilitator:** Stages 5–6 were not run in the UI rehearsal (time box). The Stage 5 SQL ran by statement API (the incremental insert added exactly the 1 new file); the 1-min poll timing in Stage 6 was measured by SQL. The file-arrival trigger never fired on the rehearsal workspace: unpause the poll-fallback job before the demo.
 
 **Prompt:**
 > Write an INSERT INTO <my_schema>.invoices_extracted that extracts only the files under incoming/ whose file_path is not yet in the table, with the same columns as before, and save it as a SQL file invoices_incremental.sql in my workspace folder.
@@ -61,7 +64,7 @@ Then **Jobs & Pipelines → Create job**: task type **SQL**, source **File** →
 **Watch for (file events):** on the pre-build workspace the file-arrival trigger was accepted (`using_file_events: true`) but **never fired** in five drops over an hour (the external location has no file events configured). If **Test connection** warns, or Stage 6 shows no run after 2 minutes, use the fallback: replace the trigger with **Scheduled → every 1 minute** (cron `0 * * * * ?`), or simply click **Run now**. The facilitator unpauses "[Revantage ESG] Extract utility invoices (Reference, 1-min poll fallback)" for the reference demo.
 **If stuck:** Stage 5 block of `m05_stage_solutions.sql`; reference SQL `code/invoices/sql/extract_invoices.sql` (insert + normalisation + validation flags).
 
-## Stage 6: Drop an invoice live (3 min)
+## Stage 6: Facilitator demo (participants: take-home): Drop an invoice live (3 min)
 
 Catalog Explorer → `utility_invoices` → `live_drop` → download `nl-elec-2026-10-noordzee.pdf` (or take it from the Git folder `code/documents/out/live_drop/`) → `incoming` → **Create directory** `2026-11-06` → **Upload to this volume**.
 **Expected:** a run starts within ~1 minute (file arrival) or at the next minute (fallback schedule); the row is in the table **~60–90 s after the drop** (measured with the 1-min schedule: 89 s for one file, ~60 s for four). `nl-elec-2026-10-noordzee`: 51,120 kWh, 16,394.91 EUR. Drop `de-elec-2026-10-mainstrom-mahnung.pdf` next: it comes back as `document_type = reminder` (a payment reminder for an invoice already loaded).
@@ -71,3 +74,4 @@ Catalog Explorer → `utility_invoices` → `live_drop` → download `nl-elec-20
 ## Wrap-up
 - **So what:** a utility invoice dropped in a folder becomes a governed, typed Delta row in about a minute, in nine languages and four currencies, with no template per supplier; the hard cases are visible, not hidden.
 - **Snowflake equivalent:** Document AI (`!PREDICT`) on a stage + a stream/task. Here it is two SQL functions on a governed volume, triggered by file arrival.
+- **Facilitator:** Stages 1–4 rehearsed with Genie Code in the SQL editor on 2026-11-05 (34 files; exact one-file extraction; 34-row table; the same 7 rows flagged). Every block of `m05_stage_solutions.sql` also ran by SQL. Stages 5–6 (Jobs UI, live drop): not run in the UI; demo them on the reference job. File-arrival trigger: never fired on the rehearsal workspace (see Stage 5).

@@ -60,7 +60,7 @@ The platform runs `npm install` and `npm run build` on your source, then starts 
 **Checkpoint:** open the survey app URL + `/?campaign=2026-Q4` (approve the one-time **Authorize** screen) → **Q4 2026 survey · Open until 30 November 2026 · Tenant ESG & Satisfaction Survey · 8 statements · 3 open questions** and the work-email box. Open the QA app → **Invoice QA queue** with **6** invoices needing review (the reference queue).
 **If stuck:** "DATABRICKS_CATALOG must be a plain SQL identifier" → `app.yaml` still has `<catalog>`: fix it (step above) and **Deploy** again. **Deploy** greyed out → compute is still starting (Stage 2); wait. "Survey unavailable" / "Couldn't load invoices" → the facilitator's grant script hasn't covered your app yet: ask, then reload (no redeploy needed). Deployment **Failed** → the **Deployments** / **Logs** tab shows why; the usual cause is a wrong source path (it must end in `/code/app` or `/code/app-invoice-qa`).
 
-## Stage 5 (if time): Check your copy (2 min)
+## Stage 5: Optional (take-home): Check your copy (2 min)
 
 **SQL Editor** → **+** → **Query**, then the Genie Code panel:
 
@@ -83,4 +83,4 @@ Re-run `participant_setup` (**Run all**): it rebuilds your Delta tables from scr
 ## Wrap-up
 - **So what:** everyone has the material, a private copy of the data and two live apps before the first module, so a broken build only ever breaks your own copy, and nobody waits for compute later.
 - **Two schemas from here on:** `<catalog>.<schema>` is the shared workshop data with the answer keys (`ref_*`, "(Reference)" assets); `<catalog>.<my_schema>` is your copy, where you build. Your Lakebase tables (Postgres schema `survey_<your_name>`) come in Module 1a.
-- **Facilitator:** Stage 1 against the public kit repo was not rehearsed (the repo was being created); check it once before the session.
+- **Facilitator:** rehearsed 2026-11-05: the notebook (11 PASS, copy = shared data, 0 differences), also run from a clone of the public kit; Stages 2 and 4 in the Apps UI (compute start ~2 min, deploy 84 s per app). Stage 1 was tested by creating the Git folder through the API without a credential, not through the **Create Git folder** dialog; try the dialog once before the session. Stage 5 is optional (take-home) in the session plan.
