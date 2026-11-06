@@ -1,0 +1,29 @@
+meter_id,property_id,country,utility_type,unit,description
+871687140012345678,1,NL,electricity,kWh,EAN main incomer
+871687120056781234,1,NL,gas,m3,"EAN gas, warehouse heating"
+WN-AMS-0042871,1,NL,water,m3,Water main
+1ESY1160398271,2,DE,electricity,kWh,"Zählernummer, Hauptzähler"
+FW-60327-0815,2,DE,district_heating,MWh,Fernwärme Übergabestation
+W-FFM-772031,2,DE,water,m3,Wasserzähler
+30001234567890,3,FR,electricity,kWh,PDL compteur général
+21458796321045,3,FR,gas,kWh,PCE chaufferie
+EGL-69002-55871,3,FR,water,m3,Compteur eau
+859182400100367512,4,CZ,electricity,kWh,EAN odběrné místo
+PT-PH8-30457,4,CZ,district_heating,GJ,Předávací stanice tepla
+PVK-7781203,4,CZ,water,m3,Vodoměr
+735999100030457812,5,SE,electricity,kWh,Anläggnings-ID el
+MFV-21124-077,5,SE,district_heating,kWh,Fjärrvärmecentral
+ES0021000012345678AB,6,ES,electricity,kWh,CUPS suministro
+CYII-28046-90311,6,ES,water,m3,Contador agua
+LU0000010599000000000000123456781,7,LU,electricity,kWh,POD électricité
+LU-GAZ-0004412,7,LU,gas,kWh,Point de livraison gaz
+VDL-EAU-38GR-01,7,LU,water,m3,Compteur eau / Wasserzähler
+10012345678,8,IE,electricity,kWh,MPRN
+1234567,8,IE,gas,kWh,GPRN
+IT001E12345678,9,IT,electricity,kWh,POD edificio A
+IT001E87654321,9,IT,electricity,kWh,POD edificio B
+00881234567890,9,IT,gas,Smc,PDR centrale termica
+A2T-MI-4471,9,IT,district_heating,kWh,Sottostazione teleriscaldamento
+590310600012345678,10,PL,electricity,kWh,PPE główny
+PL-PSG-8831207,10,PL,gas,kWh,Punkt poboru gazu
+VEO-WAW-11872,10,PL,district_heating,GJ,Węzeł cieplny

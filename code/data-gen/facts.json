@@ -1,0 +1,139 @@
+{
+  "as_of": "2026-11-05T07:30:00+00:00",
+  "counts": {
+    "properties": 10,
+    "tenants": 45,
+    "survey_contacts": 60,
+    "survey_questions": 11,
+    "survey_campaigns": 5,
+    "survey_requests": 300,
+    "survey_responses": 216,
+    "survey_answers": 2127
+  },
+  "text_answers": 399,
+  "distinct_text_ratio": 0.787,
+  "requests_by_campaign": {
+    "2025-Q4": 60,
+    "2026-Q1": 60,
+    "2026-Q2": 60,
+    "2026-Q3": 60,
+    "2026-Q4": 60
+  },
+  "responses_by_campaign": {
+    "2025-Q4": 46,
+    "2026-Q1": 45,
+    "2026-Q2": 46,
+    "2026-Q3": 48,
+    "2026-Q4": 31
+  },
+  "completion_rate_by_campaign": {
+    "2025-Q4": 0.7667,
+    "2026-Q1": 0.75,
+    "2026-Q2": 0.7667,
+    "2026-Q3": 0.8,
+    "2026-Q4": 0.5167
+  },
+  "completion_rate_by_property_all_campaigns": {
+    "Amstel Logistics Park": 0.8333,
+    "Rhine Gate Offices": 0.7333,
+    "Lumière Residences": 0.7,
+    "Vltava Business Centre": 0.2667,
+    "Øresund Distribution Hub": 0.8333,
+    "Castellana Tower": 0.9,
+    "Grand Rue Retail Quarter": 0.6333,
+    "Docklands Studios": 0.9,
+    "Porta Nord Campus": 0.7333,
+    "Vistula Logistics Centre": 0.6667
+  },
+  "open_campaign": "2026-Q4",
+  "open_campaign_not_completed_contacts": 29,
+  "portfolio_avg_score_all": 3.64,
+  "portfolio_avg_by_theme": {
+    "Energy & carbon": 3.45,
+    "Indoor comfort": 3.44,
+    "Waste & recycling": 3.56,
+    "Water": 3.77,
+    "Sustainable transport": 3.84,
+    "Wellbeing": 3.76,
+    "Communication": 3.75,
+    "Overall satisfaction": 3.59
+  },
+  "energy_avg_by_property": {
+    "Amstel Logistics Park": 3.52,
+    "Rhine Gate Offices": 4.14,
+    "Lumière Residences": 3.76,
+    "Vltava Business Centre": 2.88,
+    "Øresund Distribution Hub": 4.0,
+    "Castellana Tower": 1.85,
+    "Grand Rue Retail Quarter": 3.63,
+    "Docklands Studios": 4.26,
+    "Porta Nord Campus": 3.55,
+    "Vistula Logistics Centre": 2.6
+  },
+  "comfort_avg_by_property": {
+    "Amstel Logistics Park": 3.92,
+    "Rhine Gate Offices": 3.95,
+    "Lumière Residences": 3.62,
+    "Vltava Business Centre": 3.0,
+    "Øresund Distribution Hub": 3.8,
+    "Castellana Tower": 1.63,
+    "Grand Rue Retail Quarter": 3.47,
+    "Docklands Studios": 4.22,
+    "Porta Nord Campus": 3.68,
+    "Vistula Logistics Centre": 2.9
+  },
+  "overall_avg_by_property": {
+    "Amstel Logistics Park": 3.84,
+    "Rhine Gate Offices": 3.77,
+    "Lumière Residences": 3.81,
+    "Vltava Business Centre": 2.75,
+    "Øresund Distribution Hub": 3.44,
+    "Castellana Tower": 2.56,
+    "Grand Rue Retail Quarter": 3.68,
+    "Docklands Studios": 4.48,
+    "Porta Nord Campus": 3.59,
+    "Vistula Logistics Centre": 3.45
+  },
+  "amstel_energy_by_campaign": {
+    "2025-Q4": 2.6,
+    "2026-Q1": 3.0,
+    "2026-Q2": 3.8,
+    "2026-Q3": 3.83,
+    "2026-Q4": 4.5
+  },
+  "amstel_solar_led_mentions_by_campaign": {
+    "2025-Q4": 2,
+    "2026-Q1": 2,
+    "2026-Q2": 2,
+    "2026-Q3": 7,
+    "2026-Q4": 5
+  },
+  "castellana_energy_by_campaign": {
+    "2025-Q4": 2.0,
+    "2026-Q1": 2.2,
+    "2026-Q2": 2.0,
+    "2026-Q3": 1.5,
+    "2026-Q4": 1.5
+  },
+  "castellana_comfort_by_campaign": {
+    "2025-Q4": 1.83,
+    "2026-Q1": 1.8,
+    "2026-Q2": 1.67,
+    "2026-Q3": 1.5,
+    "2026-Q4": 1.25
+  },
+  "castellana_text_answers": 47,
+  "castellana_text_mentioning_hvac": 31,
+  "other_text_answers": 352,
+  "other_text_mentioning_hvac": 0,
+  "open_campaign_avg_by_theme": {
+    "Energy & carbon": 3.58,
+    "Indoor comfort": 3.35,
+    "Waste & recycling": 3.65,
+    "Water": 3.87,
+    "Sustainable transport": 3.84,
+    "Wellbeing": 3.77,
+    "Communication": 3.94,
+    "Overall satisfaction": 3.84
+  }
+}

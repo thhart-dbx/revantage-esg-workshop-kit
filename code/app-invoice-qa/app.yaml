@@ -1,0 +1,27 @@
+# Databricks Apps runtime config for the invoice QA app when it is deployed from the Apps UI
+# (workshop Module 0: Create app -> Custom -> Deploy from <your Git folder>/code/app-invoice-qa).
+# The platform runs `npm install`, `npm run build`, then the command below.
+# package.json "start" must be: next start -H 0.0.0.0 -p ${DATABRICKS_APP_PORT:-3000}
+#
+# App resource to add in the Apps UI: SQL warehouse, key `sql-warehouse`, Can use.
+#
+# The reference app (bundle `qa_app`) ignores these values: code/resources/app_invoice_qa.yml `config` sets
+# the same variables from the bundle target. Keep the two lists of names identical.
+command: ['npm', 'run', 'start']
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  # ---- Workshop settings: the only lines you change (Module 6, Stage 1) ----
+  - name: DATABRICKS_CATALOG
+    value: <catalog> # the workshop catalog (Module 0)
+  - name: DATABRICKS_SCHEMA
+    value: <schema> # Module 6: your <my_schema>, e.g. <schema>_jane_doe
+  - name: INVOICES_TABLE
+    value: ref_invoices_extracted # Module 6: invoices_qa (built from your Module 5 table by m06_qa_queue.sql)
+  - name: CORRECTIONS_TABLE
+    value: ref_invoice_corrections # Module 6: invoice_corrections
+  # Usually unchanged: the volume the invoices' file_path points at, and the property list.
+  - name: INVOICES_VOLUME
+    value: utility_invoices
+  - name: PROPERTIES_TABLE
+    value: properties

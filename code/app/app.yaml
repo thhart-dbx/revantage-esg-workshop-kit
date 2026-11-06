@@ -1,0 +1,23 @@
+# Databricks Apps runtime config for the survey app when it is deployed from the Apps UI
+# (workshop Module 0: Create app -> Custom -> Deploy from <your Git folder>/code/app).
+# The platform runs `npm install`, `npm run build`, then the command below.
+#
+# App resources to add in the Apps UI (Configure step, or Edit -> App resources):
+#   - SQL warehouse, key `sql-warehouse`, Can use
+#   - Database (Lakebase): project "Revantage ESG survey (Lakebase)", branch production, database esg_survey,
+#     Can connect and create. Any resource key works: the platform injects PGHOST, PGPORT, PGDATABASE,
+#     PGUSER (the app's service principal) and PGSSLMODE for it.
+#
+# The reference app (bundle `demo_app`) ignores these values: code/resources/app.yml `config` sets the
+# same variables from the bundle target. Keep the two lists of names identical.
+command: ['npm', 'run', 'start']
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  # ---- Workshop settings: the only lines you change (Module 1b, Stage 1) ----
+  - name: DATABRICKS_CATALOG
+    value: <catalog> # the workshop catalog (Module 0)
+  - name: DATABRICKS_SCHEMA
+    value: <schema> # Module 1b: your <my_schema>, e.g. <schema>_jane_doe
+  - name: SURVEY_PG_SCHEMA
+    value: survey # Module 1b: your Postgres schema from Module 1a, survey_<your_name>
